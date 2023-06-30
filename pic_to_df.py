@@ -1,5 +1,3 @@
-__author__ = """Nripesh Niketan"""
-__email__ = """nripesh.niketan@emerson.com"""
 
 import time
 import cv2
@@ -78,6 +76,8 @@ def read_image(file, skipped=skipped):
             skipped = skipped.append({'skipped': row}, ignore_index=True)
     df = pd.DataFrame({'Locator': locators, 'item_code': item_codes, 'qty': qtys, 'line': lines, 'file': file})
     return df, skipped
+
+
 
 def read_images_in_folder(folder):
     global skipped
