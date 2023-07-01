@@ -61,7 +61,7 @@ If you encounter any issues, please open an issue in this repository.
 
 ## Contributing
 
-Pull requests are welcome. Please make sure to update tests as appropriate.
+Pull requests are welcome.
 
 ## License
 
