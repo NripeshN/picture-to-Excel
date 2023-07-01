@@ -8,6 +8,13 @@ import concurrent.futures
 import shutil
 import warnings
 import numpy as np
+import argparse
+import sys
+
+# print (sys.platform)
+
+if sys.platform=="win32":
+    pytesseract.pytesseract.tesseract_cmd = r'tesseract\tesseract.exe'
 
 warnings.filterwarnings("ignore")
 
@@ -69,6 +76,7 @@ def read_images_in_folder(folder, config):
     return df, skipped
 
 if __name__ == '__main__':
+    # pytesseract.pytesseract.tesseract_cmd = r'tesseract\tesseract.exe'
     config = {
         "dilation": (7,7),
         "blur": 21,
@@ -76,9 +84,33 @@ if __name__ == '__main__':
         "tesseract": r'--oem 3 --psm 6',
         "processed_files_folder": 'processed_files'
     }
-    folder = 'new_images'
-    df, skipped = read_images_in_folder(folder, config)
     
-    with pd.ExcelWriter('output.xlsx') as writer:
-        df.to_excel(writer, sheet_name='data', index=False)
+    # folder = 'new_images'
+    # df, skipped = read_images_in_folder(folder, config)
+    
+    # with pd.ExcelWriter('output.xlsx') as writer:
+    #     df.to_excel(writer, sheet_name='data', index=False)
+    #     skipped.to_excel(writer, sheet_name='skipped', index=False)
+
+    ''' [1:48 PM] Niketan, Nripesh
+
+python file.py [-f folder-name] [-o output-excel-name] [-onefile file-name]
+'''
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-f", "--foldername", dest ="foldername", help = "Folder name", default='new_images')
+    parser.add_argument("-o", "--outputfile", dest="outputfile", help="Output file", default='output.xlsx')
+    parser.add_argument("-of", "--onefile", dest = "onefile", help = "One file")
+
+    args = parser.parse_args()
+
+    print (args.foldername, args.outputfile)
+    folder= args.foldername
+    file = args.outputfile
+    print(folder, file)
+
+    df, skipped = read_images_in_folder(folder, config)
+
+    with pd.ExcelWriter(file) as writer:
+        df.to_excel(writer, sheet_name='data' , index=False)
         skipped.to_excel(writer, sheet_name='skipped', index=False)
