@@ -98,17 +98,16 @@ python file.py [-f folder-name] [-o output-excel-name] [-onefile file-name]
 '''
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-f", "--foldername", dest ="foldername", help = "Folder name", default='new_images')
-    parser.add_argument("-o", "--outputfile", dest="outputfile", help="Output file", default='output.xlsx')
-    parser.add_argument("-of", "--onefile", dest = "onefile", help = "One file")
+    parser.add_argument("-f", "--foldername", help = "Specify path of folder that contain the images. Will use new_images folder if not specified.", default='new_images')
+    parser.add_argument("-o", "--outputfile", help="Specify name (and destination) of the output file to be created. Will appear in base directory if location is not specified.", default='output.xlsx')
+    parser.add_argument("-of", "--onefile", dest = "onefile", help = "Specify one file to convert only one image to data frame.")
 
     args = parser.parse_args()
-
     folder= args.foldername
-    file = args.outputfile
-
+    outfile = args.outputfile
+    file = args.onefile
     df, skipped = read_images_in_folder(folder, config)
 
-    with pd.ExcelWriter(file) as writer:
+    with pd.ExcelWriter(outfile) as writer:
         df.to_excel(writer, sheet_name='data' , index=False)
         skipped.to_excel(writer, sheet_name='skipped', index=False)
