@@ -98,16 +98,14 @@ python file.py [-f folder-name] [-o output-excel-name] [-onefile file-name]
 '''
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-f", "--foldername", dest ="foldername", help = "Folder name", default='new_images')
-    parser.add_argument("-o", "--outputfile", dest="outputfile", help="Output file", default='output.xlsx')
+    parser.add_argument("-f", "--foldername", help = "Specify path of folder that contain the images. Will use new_images folder if not specified", default='new_images')
+    parser.add_argument("-o", "--outputfile", help="Specify name (and destination) of the output file to be created. Will appear in base directory if location is not specified.", default='output.xlsx')
     parser.add_argument("-of", "--onefile", dest = "onefile", help = "One file")
 
     args = parser.parse_args()
 
-    print (args.foldername, args.outputfile)
     folder= args.foldername
     file = args.outputfile
-    print(folder, file)
 
     df, skipped = read_images_in_folder(folder, config)
 
