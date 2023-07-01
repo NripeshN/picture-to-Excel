@@ -103,11 +103,9 @@ python file.py [-f folder-name] [-o output-excel-name] [-onefile file-name]
     parser.add_argument("-of", "--onefile", dest = "onefile", help = "Specify one file to convert only one image to data frame.")
 
     args = parser.parse_args()
-
     folder= args.foldername
     outfile = args.outputfile
     file = args.onefile
-
     df, skipped = read_images_in_folder(folder, config)
 
     with pd.ExcelWriter(outfile) as writer:
