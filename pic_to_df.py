@@ -104,10 +104,8 @@ python file.py [-f folder-name] [-o output-excel-name] [-onefile file-name]
 
     args = parser.parse_args()
 
-    print (args.foldername, args.outputfile)
     folder= args.foldername
     file = args.outputfile
-    print(folder, file)
 
     df, skipped = read_images_in_folder(folder, config)
 
