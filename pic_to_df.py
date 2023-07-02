@@ -111,3 +111,7 @@ python file.py [-f folder-name] [-o output-excel-name] [-onefile file-name]
     with pd.ExcelWriter(outfile) as writer:
         df.to_excel(writer, sheet_name='data' , index=False)
         skipped.to_excel(writer, sheet_name='skipped', index=False)
+
+def read_onefile():
+    #TODO
+    pass
