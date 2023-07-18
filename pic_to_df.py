@@ -11,7 +11,6 @@ import numpy as np
 import argparse
 import sys
 
-# print (sys.platform)
 
 if sys.platform == "win32":
     pytesseract.pytesseract.tesseract_cmd = r"tesseract\tesseract.exe"
@@ -94,13 +93,6 @@ if __name__ == "__main__":
         "tesseract": r"--oem 3 --psm 6",
         "processed_files_folder": "processed_files",
     }
-
-    # folder = 'new_images'
-    # df, skipped = read_images_in_folder(folder, config)
-
-    # with pd.ExcelWriter('output.xlsx') as writer:
-    #     df.to_excel(writer, sheet_name='data', index=False)
-    #     skipped.to_excel(writer, sheet_name='skipped', index=False)
 
     parser = argparse.ArgumentParser()
     parser.add_argument(
