@@ -118,13 +118,19 @@ if __name__ == "__main__":
     folder = args.foldername
     outfile = args.outputfile
     file = args.onefile
-    df, skipped = read_images_in_folder(folder, config)
+
+    if file is not None:
+        df, skipped = read_onefile(file, config)
+    else:
+        df, skipped = read_images_in_folder(folder, config)
 
     with pd.ExcelWriter(outfile) as writer:
         df.to_excel(writer, sheet_name="data", index=False)
         skipped.to_excel(writer, sheet_name="skipped", index=False)
 
 
-def read_onefile():
-    # TODO
-    pass
+def read_onefile(file, config):
+    skipped = pd.DataFrame(columns=["skipped"])
+    df, skipped = read_image(file, config, skipped)
+    return df, skipped
+
