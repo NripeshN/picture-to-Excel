@@ -46,7 +46,7 @@ cd repository
 2. Run the script:
 
 ```bash
-python script_name.py
+python pic_to_df.py
 ```
 
 Ensure you have the correct directory path and necessary configuration details set in the `config` dictionary in the `if __name__ == '__main__'` block. The configuration dictionary includes settings for image dilation, blur, the path for saving preprocessed images, Tesseract commands, and the directory for storing processed files.
